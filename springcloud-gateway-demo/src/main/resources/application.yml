@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: test
+  cloud:
+      gateway:
+        discovery:
+          locator:
+            #urlExpression: "'lb://'+serviceId+'/api/'"
+            enabled: true
+            lower-case-service-id: true
+        routes:
+        - id: goods
+          uri: lb://goods
+          #order: 8381
+          predicates:
+          - Path=/goods/**
+          filters:
+          - StripPrefix=1
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

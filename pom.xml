@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zjl.springcloud</groupId>
+    <artifactId>springcloud-example</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>springcloud-eureka-demo</module>
+        <module>user-demo</module>
+        <module>goods-demo</module>
+        <module>common-springcloud</module>
+        <module>springcloud-gateway-demo</module>
+    </modules>
+
+    <properties>
+        <shop.version>0.0.1-SNAPSHOT</shop.version>
+        <java.version>1.8</java.version>
+        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <lombok.version>1.18.4</lombok.version>
+        <fastjson.version>1.2.58</fastjson.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring-cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 全局属性配置 -->
+    <profiles>
+
+        <!-- 开发环境  -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <!-- 部署环境(对应配置文件版本) -->
+                <env>dev</env>
+            </properties>
+            <!-- 设置默认环境 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <!-- 测试环境  -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <!-- 预发布环境  -->
+        <profile>
+            <id>snapshot</id>
+            <properties>
+                <env>snapshot</env>
+            </properties>
+        </profile>
+        <!-- 正式环境 -->
+        <profile>
+            <id>release</id>
+            <properties>
+                <!-- 部署环境(对应配置文件版本) -->
+                <env>release</env>
+            </properties>
+        </profile>
+        <!-- Docker环境 -->
+        <profile>
+            <id>docker</id>
+            <properties>
+                <!-- 部署环境(对应配置文件版本) -->
+                <env>docker</env>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

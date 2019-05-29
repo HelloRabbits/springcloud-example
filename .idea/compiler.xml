@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common-springcloud" />
+        <module name="goods-demo-api" />
+        <module name="goods-demo-server" />
+        <module name="springcloud-eureka-demo" />
+        <module name="springcloud-gateway-demo" />
+        <module name="user-demo-api" />
+        <module name="user-demo-server" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
