@@ -6,14 +6,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-springcloud" />
-        <module name="goods-demo-api" />
-        <module name="goods-demo-server" />
         <module name="springcloud-eureka-demo" />
         <module name="springcloud-gateway-demo" />
+        <module name="goods-demo-server" />
         <module name="user-demo-api" />
+        <module name="goods-demo-api" />
         <module name="user-demo-server" />
+        <module name="common-springcloud" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-springcloud" target="1.5" />
+      <module name="goods-demo" target="1.5" />
+      <module name="goods-demo-api" target="1.5" />
+      <module name="goods-demo-server" target="1.5" />
+      <module name="springcloud-eureka-demo" target="1.5" />
+      <module name="springcloud-example" target="1.5" />
+      <module name="springcloud-gateway-demo" target="1.5" />
+      <module name="user-demo" target="1.5" />
+      <module name="user-demo-api" target="1.5" />
+      <module name="user-demo-server" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
