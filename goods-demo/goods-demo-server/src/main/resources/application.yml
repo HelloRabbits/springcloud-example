@@ -14,5 +14,27 @@ eureka:
   instance:
     # 优先使用IP地址方式进行注册服务
     prefer-ip-address: true
+system:
+  config:
+    value: 1222
+
+# 必须配置
+feign:
+  hystrix.enabled: true
+  httpclient.enabled: false
+  okhttp.enabled: true
+hystrix:
+  command:
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 3000
+      circuitBreaker.sleepWindowInMilliseconds: 3000
+      circuitBreaker.forceClosed: true
+      #execution.timeout.enabled: false
+ribbon:
+  ReadTimeout: 3000
+  SocketTimeout: 3000
+  #请求连接的超时时间
+  ConnectTimeout: 3000
+  maxAutoRetries: 0
 
 
