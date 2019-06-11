@@ -1,6 +1,7 @@
 package com.zjl.springcloud.goods.service;
 
 import com.zjl.springcloud.goods.bean.ConfigBean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: zhangjl
  * @create: 2019-05-29 11:03
  **/
+@Slf4j
 @RestController
 public class GoodsServiceImpl implements GoodsService {
 
@@ -33,8 +35,8 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Object testException() throws Exception {
-        Thread.sleep(30000);
-
+        log.info("exception");
+        //Thread.sleep(300);
         return "exception";
     }
 }

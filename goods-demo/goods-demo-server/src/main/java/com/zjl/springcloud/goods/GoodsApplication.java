@@ -3,6 +3,7 @@ package com.zjl.springcloud.goods;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @description: start class
@@ -10,6 +11,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @create: 2019-05-29 09:59
  **/
 @SpringBootApplication
+@ComponentScan(value = {"com.zjl.springcloud"})
 public class GoodsApplication {
 
     public static void main(String[] args) {
