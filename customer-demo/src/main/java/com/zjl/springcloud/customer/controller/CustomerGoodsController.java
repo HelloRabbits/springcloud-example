@@ -1,7 +1,6 @@
-package com.zjl.springcloud.gateway.controller;
+package com.zjl.springcloud.customer.controller;
 
 import com.zjl.springcloud.goods.service.GoodsService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,19 +8,23 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @description:
  * @author: zhangjl
- * @create: 2019-06-11 10:44
+ * @create: 2019-06-12 14:23
  **/
-@Slf4j
 @RestController
-public class GoodsController {
+public class CustomerGoodsController {
+
     @Autowired
     private GoodsService goodsService;
 
 
-    @RequestMapping("/ao/test")
-    public Object goodsTest() throws Exception {
-        Object o = goodsService.testException();
-        log.info(o.toString());
-        return o;
+    @RequestMapping("/get/test")
+    public Object getTest() {
+        Object goods = null;
+        try {
+            goods = goodsService.testException();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return goods;
     }
 }

@@ -1,0 +1,69 @@
+spring:
+  profiles:
+    active: @env@
+  application:
+    name: customer
+server:
+  port: ${server.port}
+# 配置Eureka Server 信息
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  # 自定义实例编号
+  instance:
+    # 优先使用IP地址方式进行注册服务
+    prefer-ip-address: true
+system:
+  config:
+    value: 1222
+
+#开启熔断配置
+feign:
+  client:
+    config:
+      default:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+        loggerLevel: basic
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+#    connection-timeout: 20000
+  okhttp.enabled: true
+
+
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        #断路器的超时时间,下级服务返回超出熔断器时间，即便成功，消费端消息也是TIMEOUT,所以一般断路器的超时时间需要大于ribbon的超时时间，ribbon是真正去调用下级服务
+        #当服务的返回时间大于ribbon的超时时间，会触发重试
+        #断路器的超时时间默认为1000ms，太小了
+        isolation.thread.timeoutInMilliseconds: 30000
+        timeout.enabled: true
+      #短路多久以后开始尝试是否恢复，默认5s）
+      circuitBreaker.sleepWindowInMilliseconds: 30000
+      circuitBreaker.forceClosed: true
+      #出错百分比阈值，当达到此阈值后，开始短路。默认50%）
+      circuitBreaker.errorThresholdPercentage: 50%
+      #当在配置时间窗口内达到此数量的失败后，进行短路。默认20个）
+      circuitBreaker.requestVolumeThreshold: 20
+
+  #请求处理的超时时间
+ribbon:
+  #限制3秒内必须请求到服务，并不限制服务处理的返回时间
+  ConnectTimeout: 3000
+  #请求处理的超时时间 下级服务响应最大时间,超出时间消费方（路由也是消费方）返回timeout
+  ReadTimeout: 20000
+  SocketTimeout: 2000
+  #请求连接的超时时间
+  ConnectTimeout: 2000
+#  maxAutoRetries: 0
+
+
+
+

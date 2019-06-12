@@ -4,6 +4,8 @@ import com.zjl.springcloud.goods.bean.ConfigBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,21 +24,24 @@ public class GoodsServiceImpl implements GoodsService {
     private ConfigBean configBean;
 
     @Override
-    public Object findGoods(String goodsId) throws InterruptedException {
+    public String findGoods(String goodsId) throws InterruptedException {
         Thread.sleep(2000);
+        log.info("goods");
         return "goods" + "," + value + "," + configBean.getValue();
     }
 
     @Override
-    public Object testTimeOut() throws InterruptedException {
+    public String testTimeOut() throws InterruptedException {
         Thread.sleep(3000);
+        log.info("timeout");
         return "service timeout";
     }
 
     @Override
-    public Object testException() throws Exception {
+    public String testException() throws Exception {
         log.info("exception");
-        //Thread.sleep(300);
+        System.out.println("exception");
+        Thread.sleep(3000);
         return "exception";
     }
 }

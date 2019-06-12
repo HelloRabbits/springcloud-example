@@ -39,34 +39,37 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
+    # Eureka服务注册中心会将自己作为客户端来尝试注册它自己，必須禁止
+#    register-with-eureka: false
+#    fetch-registry: false
 
 #开启熔断配置
 feign:
   client:
     config:
       default:
-        connectTimeout: 1000
-        readTimeout: 1000
+        connectTimeout: 10000
+        readTimeout: 10000
         loggerLevel: basic
-  hystrix.enabled: true
-  #httpclient.enabled: false
-  okhttp.enabled: true
+  hystrix:
+    enabled: true
+  httpclient.enabled: false
+  okhttp:
+    enabled: true
 
-#ribbon:
-#  httpclient:
-#    enabled: false
-#  okhttp:
-#    enabled: true
-#  ReadTimeout: 600
-#  SocketTimeout: 600
-#  #请求连接的超时时间
-#  ConnectTimeout: 600
-#  maxAutoRetries: 0
-#
+
+
 #hystrix:
 #  command:
 #    default:
-#      execution.isolation.thread.timeoutInMilliseconds: 600
-#      circuitBreaker.sleepWindowInMilliseconds: 600
+#      execution.isolation.thread.timeoutInMilliseconds: 300000
+#      circuitBreaker.sleepWindowInMilliseconds: 300000
 #      circuitBreaker.forceClosed: true
+#      #execution.timeout.enabled: false
+#  #请求处理的超时时间
+#ribbon:
+#  ReadTimeout: 300000
+#  SocketTimeout: 300000
+#  #请求连接的超时时间
+#  ConnectTimeout: 30000
+#  maxAutoRetries: 0

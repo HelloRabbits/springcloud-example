@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @create: 2019-05-29 09:59
  **/
 @SpringBootApplication
-@ComponentScan(value = {"com.zjl.springcloud"})
+@EnableEurekaClient
 public class GoodsApplication {
 
     public static void main(String[] args) {

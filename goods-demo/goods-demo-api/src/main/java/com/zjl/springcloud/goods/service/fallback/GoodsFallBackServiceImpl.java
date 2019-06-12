@@ -13,19 +13,19 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class GoodsFallBackServiceImpl implements GoodsService {
     @Override
-    public Object findGoods(String goodsId) throws InterruptedException {
+    public String findGoods(String goodsId) throws InterruptedException {
         log.info("fallback goods service");
         return "fallback goods service";
     }
 
     @Override
-    public Object testTimeOut() {
+    public String testTimeOut() {
         log.info("fallback service timeout");
         return "fallback service timeout";
     }
 
     @Override
-    public Object testException() throws Exception {
+    public String testException() throws Exception {
         log.info("fallback service exception");
         return "fallback service exception";
     }
