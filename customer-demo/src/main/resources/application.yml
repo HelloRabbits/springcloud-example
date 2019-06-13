@@ -26,10 +26,12 @@ feign:
 #        connectTimeout: 5000
 #        readTimeout: 5000
         loggerLevel: basic
+
   hystrix:
     enabled: true
   httpclient:
     enabled: false
+    connection-timeout:
 #    connection-timeout: 20000
   okhttp.enabled: true
 
@@ -47,22 +49,24 @@ hystrix:
         timeout.enabled: true
       #短路多久以后开始尝试是否恢复，默认5s）
       circuitBreaker.sleepWindowInMilliseconds: 30000
-      circuitBreaker.forceClosed: true
+#      如果该属性设置为true，强制断路器进入关闭状态，将会允许所有的请求，无视错误率
+#      circuitBreaker.forceClosed: true
       #出错百分比阈值，当达到此阈值后，开始短路。默认50%）
       circuitBreaker.errorThresholdPercentage: 50%
       #当在配置时间窗口内达到此数量的失败后，进行短路。默认20个）
       circuitBreaker.requestVolumeThreshold: 20
 
-  #请求处理的超时时间
+
+
 ribbon:
   #限制3秒内必须请求到服务，并不限制服务处理的返回时间
-  ConnectTimeout: 3000
-  #请求处理的超时时间 下级服务响应最大时间,超出时间消费方（路由也是消费方）返回timeout
-  ReadTimeout: 20000
-  SocketTimeout: 2000
-  #请求连接的超时时间
   ConnectTimeout: 2000
-#  maxAutoRetries: 0
+  #请求处理的超时时间 下级服务响应最大时间,超出时间消费方（路由也是消费方）返回timeout
+  ReadTimeout: 5000
+#  SocketTimeout: 5000
+  maxAutoRetries: 1
+  #切换实例的重试次数
+  MaxAutoRetriesNextServer: 1
 
 
 
